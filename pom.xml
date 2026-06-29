@@ -43,6 +43,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Принудительное подключение подмодуля web-тестов, где лежит TestRestTemplate -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Swagger / OpenAPI с указанием версии -->
         <dependency>
             <groupId>org.springdoc</groupId>
