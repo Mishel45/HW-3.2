@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest; // Импорт Boot 4
 import org.springframework.http.MediaType;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean; // Импорт Boot 4
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.hogwarts.school.model.Faculty;
@@ -17,13 +17,14 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(FacultyController.class)
+@WebMvcTest(FacultyController.class) // Явное указание целевого контроллера
 class FacultyControllerMvcTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockitoBean
     private FacultyService facultyService;
@@ -92,6 +93,6 @@ class FacultyControllerMvcTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/faculty/search?search=грифф"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("Гриффиндор"));
+                .andExpect(jsonPath("$[0].name").value("Гриффиндор")); // Исправлено под массивы JSON
     }
 }
