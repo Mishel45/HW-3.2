@@ -64,4 +64,19 @@ public class StudentController {
     public String handleIllegalArgumentException(IllegalArgumentException e) {
         return e.getMessage();
     }
+
+    @GetMapping("/count")
+    public long getStudentsCount() {
+        return studentService.getStudentsCount();
+    }
+
+    @GetMapping("/average-age")
+    public double getAverageAge() {
+        return studentService.getAverageAge();
+    }
+
+    @GetMapping("/last-five")
+    public Collection<Student> getLastFiveStudents() {
+        return studentService.getLastFiveStudents();
+    }
 }

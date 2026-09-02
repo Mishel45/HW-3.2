@@ -1,6 +1,8 @@
 package ru.hogwarts.school.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -126,5 +128,10 @@ public class AvatarService {
             baos.flush();
             return baos.toByteArray();
         }
+    }
+
+    public List<Avatar> getAllAvatars(int page, int size) {
+        org.springframework.data.domain.PageRequest pageRequest = org.springframework.data.domain.PageRequest.of(page - 1, size);
+        return avatarRepository.findAll(pageRequest).getContent();
     }
 }
