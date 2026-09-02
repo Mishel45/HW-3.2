@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest; // Импорт Boot 4
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.bean.override.mockito.MockitoBean; // Импорт Boot 4
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.hogwarts.school.model.Student;
@@ -17,7 +17,6 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-// ИСПРАВЛЕНИЕ: Явно указываем контроллер в скобках, чтобы контекст изолировал его
 @WebMvcTest(StudentController.class)
 class StudentControllerMvcTest {
 
@@ -26,7 +25,6 @@ class StudentControllerMvcTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    // В Spring Boot 4 используется строго @MockitoBean
     @MockitoBean
     private StudentService studentService;
 
@@ -94,6 +92,6 @@ class StudentControllerMvcTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/student?age=12"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("Полумна Лавгуд")); // Исправлено под синтаксис массивов JSON в Spring 4
+                .andExpect(jsonPath("$[0].name").value("Полумна Лавгуд"));
     }
 }
