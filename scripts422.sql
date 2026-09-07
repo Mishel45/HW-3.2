@@ -6,6 +6,7 @@ CREATE TABLE car (
 );
 
 
+
 CREATE TABLE person (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
