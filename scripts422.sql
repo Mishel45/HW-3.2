@@ -5,6 +5,7 @@ CREATE TABLE car (
     price NUMERIC(12, 2) NOT NULL
 );
 
+
 CREATE TABLE person (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
